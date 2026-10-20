@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice Questions</title>
+</head>
+<body>
+
+    <h1>JavaScript Practice Questions</h1>
+
+    <!-- QUESTION 1 -->
+    <h2>Q1: Shopping Bill Calculator</h2>
+    <p>Product Price: Rs. 250</p>
+
+    <input type="number" id="quantity" placeholder="Enter quantity">
+    <button id="calculateBtn">Calculate Bill</button>
+    <p id="billResult"></p>
+
+    <hr>
+
+    <!-- QUESTION 2 -->
+    <h2>Q2: Random Number Generator</h2>
+
+    <button id="generateBtn">Generate Number</button>
+    <p id="numberResult"></p>
+
+    <hr>
+
+    <!-- QUESTION 3 -->
+    <h2>Q3: Student Marks Result</h2>
+
+    <input type="number" id="marks" placeholder="Enter marks (0-100)">
+    <button id="checkBtn">Check Result</button>
+    <p id="studentResult"></p>
+
+    <script>
+        // QUESTION 1: Shopping Bill Calculator
+
+        let price = 250;
+
+        document.getElementById("calculateBtn").addEventListener("click", function() {
+            let quantityInput = document.getElementById("quantity").value;
+            let quantity = Number(quantityInput);
+            let result = document.getElementById("billResult");
+
+            if (quantityInput === "" || quantity <= 0 || !Number.isInteger(quantity)) {
+                result.innerHTML = "Please enter a valid quantity!";
+                console.log("Error: Invalid quantity");
+                return;
+            }
+
+            let total = price * quantity;
+            let discount = 0;
+
+            if (total >= 1000) {
+                discount = total * 0.10;
+            }
+
+            let finalBill = total - discount;
+
+            result.innerHTML =
+                "Total: Rs. " + total +
+                "<br>Discount: Rs. " + discount +
+                "<br>Final Bill: Rs. " + finalBill;
+
+            console.log("Total Bill: Rs. " + total);
+            console.log("Discount: Rs. " + discount);
+            console.log("Final Bill: Rs. " + finalBill);
+        });
+
+
+        // QUESTION 2: Random Number Generator
+
+        document.getElementById("generateBtn").addEventListener("click", function() {
+            let number = Math.floor(Math.random() * 100) + 1;
+            let message;
+
+            if (number > 50) {
+                message = "High Number";
+            } else {
+                message = "Low Number";
+            }
+
+            document.getElementById("numberResult").innerHTML =
+                "Number: " + number + "<br>" + message;
+        });
+
+
+        // QUESTION 3: Student Marks Result
+
+        document.getElementById("checkBtn").addEventListener("click", function() {
+            let marksInput = document.getElementById("marks").value;
+            let marks = Number(marksInput);
+            let result = document.getElementById("studentResult");
+
+            if (marksInput === "" || marks < 0 || marks > 100) {
+                result.innerHTML = "Please enter marks between 0 and 100!";
+            } else if (marks >= 80) {
+                result.innerHTML = "Excellent";
+            } else if (marks >= 60) {
+                result.innerHTML = "Good";
+            } else if (marks >= 40) {
+                result.innerHTML = "Pass";
+            } else {
+                result.innerHTML = "Fail";
+            }
+        });
+    </script>
+
+</body>
+</html>
